@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='amazonStyle.css') }}">
+  </head>
+  <body>
+    <div class = "buttonWrapper">
+     <form method="POST" action="{{ url_for('result') }}">
+        <input type="text" name="myinput" id="myinput" class="product-input" required="required">
+        <label class="product-label">Product</label>
+        <select id="menu" name="menu">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+        <button type="submit">Submit</button>
+     </form>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>danbajda.com</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='documentation.css') }}">
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="{{ url_for('home') }}">
+              <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+            </a>
+            <span class="navbar-burger" data-target="navbarMenuHeroB">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+          <div id="navbarMenuHeroB" class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item is-active" href="{{ url_for('home') }}">
+                Home
+              </a>
+              <a class="navbar-item" href="#projects">
+                Projects
+              </a>
+              <a class="navbar-item" href="{{ url_for('documentation') }}">
+                Documentation
+              </a>
+              <span class="navbar-item">
+                <a class="button is-info is-inverted">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Download</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-primary">
+        <div class="columns">
+          <div class="column is-half">
+            <img src="{{ url_for('static', filename='fishing.png') }}" alt="Fishing">
+          </div>
+          <div class="column">
+            <h1>Background:</h1>
+            <p>Heres a bit about myself before you jump into the juicy stuff. My full name is Daniel Joseph Bajda, I was
+              born into a family of 7. I have 4 brothers, yes it was as chaotic as you might think, so much so that
+              everyone always called my mother a saint for raising us. I am from a small town named Lombard in the
+              western suburbs of Chicago, Illinois. I am currently a junior, but I am planning on graduating in Fall
+              2023 at The University of Redlands where I am also on both the men's water polo and swim team. Some things
+              that I have
+              accomplished in those sports is winning a national championship in water polo, and achieving a top 10 time
+              at the university in the 100 yard breaststroke for swim. Some things I like to
+              do in my free time are board games (mainly chess, catan, and ocassionally ticket to ride), be outdoors
+              (fishing, camping, hiking, and really any sport), and hangouting with friends and family. If you couldn't
+              tell
+              already, being that most of the activities I like to participate in are games of some sort, I am extremely
+              competetive.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-primary">
+        <div class="columns">
+          <div class="column is-half">
+            <h1>Introduction:</h1>
+            <p> The goal of my final project was to familiarize myself with aspects of software engineering through
+              creating my own api and web design that I have never seen before, as well as creating something that can
+              strengthen my resume and create a baseline for future projects beyond this one. So, to satisfy these
+              standards I have set for myself, I decided to create a web application that collects a specified number
+              (user input) of a desired product (user input) on amazon via web scraping and displays the product name,
+              price, image, and a number (user input) of relevant reviews pertaining to each listing. To accomplish this
+              project, I have broken down the process into seven steps which are listed in the procedure below: </p>
+          </div>
+          <div class="column">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-primary">
+        <div class="columns">
+          <div class="column is-half">
+
+          </div>
+          <div class="column">
+            <h1>Procedure:</h1>
+            <ol>
+              <li>Choose a programming language to build the api and web framework that is compatible with that api for
+                building the web application. </li>
+              <li>Use a web scraping library from the language I chose to create an API that scrapes Amazon.com for the
+                desired product and product aspects (title, price, image, and reviews) based on user input.</li>
+              <li>Use the API created in step 2 to extract the product name, price, image, and relevant reviews from the
+                scraped product listings and create a database that is compatible with your chosen web framework to
+                store those items.</li>
+              <li>Create and design a webpage that can be used to display/showcase projects like this one. Then create a
+                webpage that can be linked to from the main page that has a form in the web application that allows
+                users to input the desired product and the number of products they want to see.</li>
+              <li>Connect the form on the web application to the api I created by handling the form submission,
+                validating the input, passing it to my api which will retrieve relevant product data from Amazon.com,
+                process the data so that it is in a displayable format on a webpage, and finally return the results.
+              </li>
+              <li>Deploy the web application to a web hosting service of my choosing.</li>
+              <li>Test the web application to ensure it is working as expected.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-primary">
+        <div class="columns">
+          <div class="column is-half">
+            <h1>Step 1:</h1>
+            <p>For my final project, I chose Python as the language to create a web scraping API and a web application
+              framework as well as HTML and CSS for designing the web application itself. Because it contains a wide
+              range of powerful modules and frameworks that make these
+              activities simpler and more effective, Python is a fantastic language for web development and web
+              scraping. Python's inclusion of well-known web scraping packages like BeautifulSoup and Selenium was a key
+              factor in my decision to use it. From HTML and XML documents, BeautifulSoup makes it rather simple to
+              extract data and specific elements and parse through them. While using Selenium, I can observe how my web
+              scraping code interacts with web pages using javascript and requests, which can help me with debugging and
+              troubleshooting. Python is also an excellent language for web development due to the availability of
+              popular web frameworks such as Flask and Django. Flask is the perfect tool for smaller projects like mine
+              because it is portable and simple to use. Python is a popular language in the IT business and is suitable
+              for web scraping and web development, so having knowledge with it can be a useful addition to my resume.
+              By completing this assignment in Python, I will be able to show my ability for swiftly picking up new
+              languages and technologies in addition to gaining experience with Python-specific libraries and
+              frameworks.</p>
+          </div>
+          <div class="column">
+            <img src="{{ url_for('static', filename='python.png') }}" alt="Python">
+            <img src="{{ url_for('static', filename='htmlcss.png') }}" alt="HTML/CSS">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-primary">
+        <div class="columns">
+          <div class="column is-half">
+            <dl>
+              <dt>a.) The libraies I will need are Selenium, BeautifulSoup, lxml, and pandas</dt>
+              <dd>
+                <img src="{{ url_for('static', filename='libraries.png') }}" alt="libraries">
+              </dd>
+            </dl>
+          </div>
+          <div class="column">
+            <h1>Step 2:</h1>
+            <p>To create my webscraping API, the first step is to download all the python libraries I need (listed in
+              a.) ) which will require a virtual enviroment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-primary">
+        <div class="columns">
+          <div class="column is-half">
+            <h1>Step 3:</h1>
+          </div>
+          <div class="column">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-primary">
+        <div class="columns">
+          <div class="column is-half">
+
+          </div>
+          <div class="column">
+            <h1>Step 4:</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

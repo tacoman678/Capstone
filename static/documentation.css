@@ -1,0 +1,15 @@
+.hero{
+    background: linear-gradient(45deg, #00fbff, #7300ff );
+    background-size: 400%;
+    animation: gradient 5s infinite;
+}
+
+@keyframes gradient{
+  0%, 100%{
+    background-position: 0%, 50%;
+  }
+
+  50%{
+    background-position: 100%, 50%;
+  }
+}
