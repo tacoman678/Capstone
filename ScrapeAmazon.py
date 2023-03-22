@@ -1,20 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-import lxml
 import pandas as pd
 
-def intialize(product):
-    if ' ' in product:
-        query = product.split(" ")
-        x = ""
-        for i in range(len(query)):
-            x += query[i]
-            if i < (len(query) - 1):
-                x += "+"
-        URL = "https://www.amazon.com/s?k=" + x
+def search_product(product):
+    if isinstance(product, str):
+        query = "+".join(product.split())
+        URL = f"https://www.amazon.com/s?k={query}"
     else:
-        URL = "https://www.amazon.com/s?k=" + product
+        raise TypeError("product must be a string")
+        
     options = Options()
     options.add_argument('--headless')
     browser = webdriver.Chrome(r"C:\Users\edste\Downloads\chromedriver_win32\chromedriver.exe", options=options)
@@ -24,53 +19,40 @@ def intialize(product):
     soup = BeautifulSoup(html, 'html.parser')
     return soup
 
-def getPrice(newSoup):
-    try:
-        wholeNum = newSoup.find_all("span", attrs={'class':'a-price-whole'})
-        fractNum = newSoup.find_all("span", attrs={'class':'a-price-fraction'})
-        price = []
-        if(len(wholeNum) == len(fractNum)):
-            for i in range(0, len(wholeNum)): 
-                price.append("$" + wholeNum[i].text + fractNum[i].text)
-        print("Price found successfully.")
-    except AttributeError:
-            price = ""
-            print("Price not found.")
-    return price
-    
+def get_prices(soup):
+    whole_nums = soup.find_all("span", attrs={'class':'a-price-whole'})
+    fract_nums = soup.find_all("span", attrs={'class':'a-price-fraction'})
+    prices = []
+    if len(whole_nums) == len(fract_nums):
+        for i in range(len(whole_nums)): 
+            price = f"${whole_nums[i].text}{fract_nums[i].text}"
+            prices.append(price)
+    return prices
 
-def getImage(newSoup):
-    try:
-        img = newSoup.find_all("img", attrs={'class':'s-image'})
-        img_src = []
-        for element in img:
-            img_src.append(element['src'])
-        print("Image found successfully.")
-    except AttributeError:
-        img_src = []
-        print("Image not found.")
-    return img_src
+def get_images(soup):
+    imgs = soup.find_all("img", attrs={'class':'s-image'})
+    img_srcs = []
+    for img in imgs:
+        if "SS" not in img['src']:
+            img_srcs.append(img['src'])
+    return img_srcs
 
-def getTitle(newSoup):
-    search = newSoup.find("span", attrs={'class':'a-color-state a-text-bold'})
-    if " " in search.text:
-        title = newSoup.find_all("span", attrs={'class':'a-size-medium a-color-base a-text-normal'})
-        titles = []
-        for element in title:
-            titles.append(element.text)
-        print("Title found successfully.")
-        return titles
-    try:
-        title = newSoup.find_all("span", attrs={'class':'a-size-base-plus a-color-base a-text-normal'})
-        titles = []
-        for element in title:
-            titles.append(element.text)
-        print("Title found successfully.")
-    except AttributeError:
-        titles = []
-        print("Title not found.")
-    return titles
+def get_titles(soup, product):
+    if " " in product:
+        titles = soup.find_all("span", attrs={'class':'a-size-medium a-color-base a-text-normal'})
+    else:
+        titles = soup.find_all("span", attrs={'class':'a-size-base-plus a-color-base a-text-normal'})
 
-def format(titles, prices, imgs, bound):
-    panda = pd.DataFrame({'titles': titles[:bound], 'prices': prices[:bound], 'imgs': imgs[:bound]})
-    return panda
+    return [title.text for title in titles]
+
+def get_links(soup):
+    links = soup.find_all("a", attrs={'class':'a-link-normal s-no-outline'})
+    links_list = []
+    for link in links:
+        links_list.append("https://www.amazon.com" + link.get('href'))
+    return links_list
+
+def format_data(titles, prices, imgs, links, bound):
+    data = {'amazon_title': titles[:bound], 'amazon_price': prices[:bound], 'amazon_image': imgs[:bound], 'amazon_link': links[:bound]}
+    df = pd.DataFrame(data)
+    return df

@@ -1,7 +1,30 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #acaab9;
+}
+
+.columns {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: 1em;
+    padding: 0.5em; */
+}
+
 .card {
     width: 11.875em;
     height: 16.5em;
-    box-shadow: 0px 1px 13px rgba(0,0,0,0.1);
+    box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
     cursor: pointer;
     transition: all 120ms;
     display: flex;
@@ -10,62 +33,78 @@
     background: #fff;
     padding: 0.5em;
     padding-bottom: 3.4em;
-   }
-   
-   .card::after {
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.card::after {
     content: "Go To Amazon";
     padding-top: 1.25em;
     padding-left: 1.25em;
     position: absolute;
     left: 0;
-    bottom: -60px;
     background: #00AC7C;
     color: #fff;
     height: 2.5em;
     width: 100%;
-    transition: all 80ms;
     font-weight: 600;
     text-transform: uppercase;
-   }
-   
-   .card .title {
+    padding-top: 0.5em;
+    bottom: -1.75em;
+    transition: all 0.1s;
+    transform: translateY(100%);
+    opacity: 0;
+    text-align: center;
+}
+
+.column:nth-child(2) .card::after {
+    content: "Go To Ebay";
+  }
+
+.card .title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.9em;
     position: absolute;
     left: 0.625em;
-    bottom: 1.875em;
+    bottom: 1.675em;
     font-weight: 400;
-   }
-   
-   .card .price {
+    overflow: hidden
+}
+
+.card .price {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 0.9em;
     position: absolute;
     left: 0.625em;
     bottom: 0.625em;
-   }
-   
-   .card:hover::after {
+}
+
+.card:hover::after {
     bottom: 0;
-   }
-   
-   .card:active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:active {
     transform: scale(0.98);
-   }
-   
-   .card:active::after {
+}
+
+.card:active::after {
     content: "Added !";
     height: 3.125em;
-   }
-   
-   .text {
+}
+
+.text {
     max-width: 55px;
-   }
-   
-   .image {
+    max-height: fit-content;
+}
+
+.image {
     background: rgb(241, 241, 241);
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     display: grid;
     place-items: center;
-   }
+    border-radius: 5px;
+}

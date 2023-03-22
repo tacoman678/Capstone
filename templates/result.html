@@ -2,24 +2,46 @@
 <html>
 
 <head>
-    <title>Search Result</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+  <title>Search Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
 </head>
 
 <body>
-    <h1>Pandas DataFrame</h1>
-    {% for index, row in df.iterrows() %}
-    <div class="container is-full-width">
-        <div class="card">
-            <div class="image"><img src="{{ row['imgs'] }}"></div>
-            <h2 class="title">{{ row['titles'] }}</h2>
-            <span class="price">{{ row['prices'] }}</span>
+  <header>
+    <h1 class="title is-1 has-text-centered">Search Results</h1>
+  </header>
+  <div class="columns is-centered is-gapless has-background-transparent">
+    <div class="column has-background-transparent">
+        <h1 class="title is-3 has-text-centered">Amazon</h1>
+      {% for index, row in df.iterrows() %}
+      <a href="{{ row['amazon_link']}}">
+        <div class="container is-full-width">
+          <div class="card">
+            <div class="image"><img src="{{ row['amazon_image'] }}"></div>
+            <h2 class="title">{{ row['amazon_title'] }}</h2>
+            <span class="price">{{ row['amazon_price'] }}</span>
+          </div>
         </div>
+      </a>
+      {% endfor %}
     </div>
-    {% endfor %}
-
+    <div class="column">
+        <h1 class="title is-3 has-text-centered">Ebay</h1>
+      {% for index, row in df.iterrows() %}
+      <a href="{{ row['ebay_link']}}">
+        <div class="container is-full-width">
+          <div class="card">
+            <div class="image"><img src="{{ row['ebay_image'] }}"></div>
+            <h2 class="title">{{ row['ebay_title'] }}</h2>
+            <span class="price">{{ row['ebay_price'] }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
 </body>
 
 </html>
