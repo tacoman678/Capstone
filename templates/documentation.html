@@ -50,7 +50,7 @@
       </nav>
     </div>
     <div class="container is-full-width">
-      <div class="notification is-primary">
+      <div class="notification is-dark">
         <div class="columns">
           <div class="column is-half">
             <img src="{{ url_for('static', filename='fishing.png') }}" alt="Fishing">
@@ -75,7 +75,7 @@
       </div>
     </div>
     <div class="container is-full-width">
-      <div class="notification is-primary">
+      <div class="notification is-dark">
         <div class="columns">
           <div class="column is-half">
             <h1>Introduction:</h1>
@@ -94,7 +94,7 @@
       </div>
     </div>
     <div class="container is-full-width">
-      <div class="notification is-primary">
+      <div class="notification is-dark">
         <div class="columns">
           <div class="column is-half">
 
@@ -106,7 +106,9 @@
                 building the web application. </li>
               <li>Use a web scraping library from the language I chose to create an API that scrapes Amazon.com for the
                 desired product and product aspects (title, price, image, and reviews) based on user input.</li>
-              <li>Use the API created in step 2 to extract the product name, price, image, and relevant reviews from the
+              <li>Use the same technique developed in Step 2 to create an api for another website like Ebay.com</li>
+              <li>Use the APIs created in steps 2 & 3 to extract the product name, price, image, and relevant reviews
+                from the
                 scraped product listings and create a database that is compatible with your chosen web framework to
                 store those items.</li>
               <li>Create and design a webpage that can be used to display/showcase projects like this one. Then create a
@@ -124,7 +126,7 @@
       </div>
     </div>
     <div class="container is-full-width">
-      <div class="notification is-primary">
+      <div class="notification is-dark">
         <div class="columns">
           <div class="column is-half">
             <h1>Step 1:</h1>
@@ -152,49 +154,182 @@
       </div>
     </div>
     <div class="container is-full-width">
-      <div class="notification is-primary">
+      <div class="notification is-dark">
         <div class="columns">
           <div class="column is-half">
             <dl>
-              <dt>a.) The libraies I will need are Selenium, BeautifulSoup, lxml, and pandas</dt>
+              <dt>a.) The libraies I will need are Selenium, BeautifulSoup, and pandas</dt>
               <dd>
                 <img src="{{ url_for('static', filename='libraries.png') }}" alt="libraries">
+              </dd>
+              <dt>b.) My search_product() method that returns the html code for a given product search on Amazon.com
+              </dt>
+              <dd>
+                <img src="{{ url_for('static', filename='search_product.png') }}" alt="search">
+              </dd>
+              <dt>c.) A method that takes an HTML parse tree and returns an array of the desired text</dt>
+              <dd>
+                <img src="{{ url_for('static', filename='get_titles.png') }}" alt="parse">
+              </dd>
+              <dt>d.) A method that takes arrays of titles, prices, image links, product links, and a boundary number to
+                limit the amount of products that are returned and returns them all in one variable</dt>
+              <dd>
+                <img src="{{ url_for('static', filename='format_data.png') }}" alt="format">
               </dd>
             </dl>
           </div>
           <div class="column">
             <h1>Step 2:</h1>
-            <p>To create my webscraping API, the first step is to download all the python libraries I need (listed in
-              a.) ) which will require a virtual enviroment.</p>
+            <p>To create my webscraping API, the first step is to download all the python libraries I need listed in
+              a.) which will require a virtual enviroment. To make a virtual enviroment in VS Code, I needed to run
+              the following commands in the terminal.
+              python -m venv venv to create it, and venv\Scripts\activate to activate it. Once activated I can pip
+              install all the libraries that I will need.
+              After everything I need has been imported, I made a method that returns the html code for a given product
+              search on Amazon.com shown in b.). I did this by checking
+              if the input was a string and formatting it correctly as a url ex:www.amazon.com/s?k=shirts+for+men, then
+              setting up a headless Chrome browser with undetected_chromedriver and various options to disable features
+              for faster browsing,
+              navigating through the browser to the Amazon search results page for the given product, retrieves the
+              page's HTML source and closes the browser, and finally create a BeautifulSoup object which can be easily
+              parsed through with the retrieved HTML and returns it. Next I made methods simlilar to the one seen in c.)
+              that takes
+              an HMTL parse tree (soup) and searches through it for a specific html element. Each respective element was
+              found using the
+              dev tools on chrome by finding the element containing the text that I want (title, price, image, and
+              links). After I made methods
+              for each element that I need, I needed to make a way of aggregating all that data so it can be passed to
+              my micro-framework using flask.
+              I chose to use a pandas dataframe for this because it allowed me to append multiple arrays together while
+              giving each array a variable
+              name that can be easily accessed. The code for this step is outlined in d.).
+            </p>
           </div>
         </div>
       </div>
     </div>
     <div class="container is-full-width">
-      <div class="notification is-primary">
+      <div class="notification is-dark">
         <div class="columns">
           <div class="column is-half">
             <h1>Step 3:</h1>
+            <p>The steps required to make an API that scrapes the desired data (title, price, image, and product links)
+              from Ebay.com are generally the same as the steps outlined above in step 2 with the exception of creating
+              a virtual enviroment and install all the required libraries, as the virtual enviroment already exists and
+              the libraries have been installed. All the same classes are imported again. The differences will be
+              outlined in the adjacent column.</p>
           </div>
           <div class="column">
-
+            <dl>
+              <dt>a.) The aspects for the chrome browser using selenium remain the same, only the url changes.</dt>
+              <dd>
+                <img src="{{ url_for('static', filename='search_product1.png') }}" alt="search">
+              </dd>
+              <dt>b.) All the elements for the title, price etc... are different as it is a different website. Below is
+                an example of how the code was adapted to still function correctly</dt>
+                <dd>
+                  <img src="{{ url_for('static', filename='get_titles1.png') }}" alt="parse">
+                </dd>
+            </dl>
           </div>
         </div>
       </div>
     </div>
     <div class="container is-full-width">
-      <div class="notification is-primary">
+      <div class="notification is-dark">
         <div class="columns">
           <div class="column is-half">
 
           </div>
           <div class="column">
             <h1>Step 4:</h1>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-dark">
+        <div class="columns">
+          <div class="column is-half">
+            <h1>Step 5:</h1>
+            <p></p>
+          </div>
+          <div class="column">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-dark">
+        <div class="columns">
+          <div class="column is-half">
+
+          </div>
+          <div class="column">
+            <h1>Step 6:</h1>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-dark">
+        <div class="columns">
+          <div class="column is-half">
+            <h1>Step 7:</h1>
+            <p></p>
+          </div>
+          <div class="column">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container is-full-width">
+      <div class="notification is-dark">
+        <div class="columns">
+          <div class="column is-half">
+            <video width="640" height="360" controls>
+              <source src="{{ url_for('static', filename='demo.mp4') }}" type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <h1>Step 8:</h1>
+            <p></p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get all "navbar-burger" elements
+      var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+    
+        // Add a click event on each of them
+        $navbarBurgers.forEach(function ($el) {
+          $el.addEventListener('click', function () {
+    
+            // Get the target from the "data-target" attribute
+            var target = $el.dataset.target;
+            var $target = document.getElementById(target);
+    
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+    
+          });
+        });
+      }
+    });
+  </script>
+  
 </body>
 
 </html>

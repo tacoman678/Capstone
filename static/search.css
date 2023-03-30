@@ -38,6 +38,13 @@ body {
     background-color: #fff;
     font-size: 1rem;
 }
+
+.select {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
 .submit-button {
     position: relative;
     appearance: none;
