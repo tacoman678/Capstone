@@ -4,6 +4,10 @@
     animation: gradient 5s infinite;
 }
 
+.code{
+  color: #00fbff;
+}
+
 @keyframes gradient{
   0%, 100%{
     background-position: 0%, 50%;

@@ -19,9 +19,15 @@
       <a href="{{ row['amazon_link']}}">
         <div class="container is-full-width">
           <div class="card">
-            <div class="image"><img src="{{ row['amazon_image'] }}"></div>
-            <h2 class="title">{{ row['amazon_title'] }}</h2>
-            <span class="price">{{ row['amazon_price'] }}</span>
+            <div class="image-container">
+              <div class="image"><img src="{{ row['amazon_image'] }}"></div>
+            </div>
+            <div class="title-container">
+              <h2 class="title">{{ row['amazon_title'] }}</h2>
+            </div>
+            <div class="price-container">
+              <span class="price">{{ row['amazon_price'] }}</span>
+            </div>
           </div>
         </div>
       </a>
